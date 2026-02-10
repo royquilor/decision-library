@@ -1,4 +1,4 @@
-# R&D Pattern Lab — Project Decisions
+# Design Library — Project Decisions
 
 ## What This Is
 
@@ -126,9 +126,9 @@ The adoption hook is **single source of truth** — everything (decisions, compo
 
 ### App Name
 
-**Decision**: "R&D Pattern Lab"
+**Decision**: "Design Library"
 
-**Why**: Emphasizes the exploration/variant aspect. This is a lab for trying things, not a final production design system.
+**Why**: Clear and descriptive. Communicates that this is a library of design patterns and decisions the team can reference.
 
 ---
 
