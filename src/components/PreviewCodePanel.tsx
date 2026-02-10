@@ -48,7 +48,7 @@ export function PreviewCodePanel({
           <Button
             variant="ghost"
             size="icon-sm"
-            className="absolute right-2 top-2 z-10 text-muted-foreground hover:text-foreground"
+            className="absolute right-2 top-2 z-10 text-[#999] hover:text-[#ccc]"
             onClick={handleCopy}
             aria-label="Copy code"
           >
@@ -58,7 +58,7 @@ export function PreviewCodePanel({
               <CopyIcon className="size-4" />
             )}
           </Button>
-          <pre className="overflow-x-auto p-4 text-sm !m-0 !bg-[#2d2d2d]">
+          <pre className="overflow-x-auto p-4 text-sm !m-0 !bg-[#2d2d2d] !text-[#ccc]">
             <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
           </pre>
         </div>
