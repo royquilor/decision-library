@@ -1,13 +1,5 @@
 import * as React from "react"
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -28,7 +20,7 @@ import { SiteHeader } from "@/components/SiteHeader"
  * AppShell - Option A: Sidebar + sticky site header
  *
  * Layout:
- * - Sticky site header (full width, top)
+ * - Sticky site header (full width, top) with team + project switchers
  * - Row: Sidebar (left) + Main content (SidebarInset)
  *
  * Uses shadcn sidebar for: collapsible sidebar, mobile drawer, Cmd/Ctrl+B.
@@ -42,29 +34,10 @@ interface AppShellProps {
 }
 
 export function AppShell({ children, currentRoute, onNavigate }: AppShellProps) {
-  // Breadcrumb label for current route
-  const routeLabels: Record<Route, string> = {
-    dashboard: "Dashboard",
-    "component-examples": "Component Examples",
-    examples: "Examples",
-  }
-
   return (
     <SidebarProvider className="flex flex-col min-h-svh w-full">
-      {/* Sticky site header - full viewport width; trigger left, then breadcrumbs */}
-      <SiteHeader>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem className="hidden md:inline-flex">
-              <BreadcrumbLink href="#">Design Decisions</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className="hidden md:inline-flex" />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{routeLabels[currentRoute]}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </SiteHeader>
+      {/* Sticky site header: trigger, logo, team switcher, project switcher */}
+      <SiteHeader />
 
       {/* Sidebar + main content row */}
       <div className="flex flex-1 min-w-0">
