@@ -28,7 +28,7 @@ export function HomePage() {
     <div className="flex flex-col">
       <div className="flex flex-col gap-2 border-b border-border bg-background px-6 py-8">
         <h1 className="text-2xl font-semibold text-foreground">
-          Design Library
+          Decision Library
         </h1>
         <p className="text-sm text-muted-foreground max-w-2xl">
           Explore UI patterns, component variants, and design decision

@@ -1,4 +1,4 @@
-# Design Library — Project Decisions
+# Decision Library — Project Decisions
 
 ## What This Is
 
@@ -126,9 +126,9 @@ The adoption hook is **single source of truth** — everything (decisions, compo
 
 ### App Name
 
-**Decision**: "Design Library"
+**Decision**: "Decision Library"
 
-**Why**: Clear and descriptive. Communicates that this is a library of design patterns and decisions the team can reference.
+**Why**: Emphasizes that this is a library of design *decisions* — the rules, rationale, and variants that guide UI work.
 
 ---
 

@@ -58,7 +58,7 @@ export function AppShell() {
           <SidebarHeader>
             <div className="flex h-16 items-center px-2">
               <span className="text-base font-medium text-sidebar-foreground">
-                Design Library
+                Decision Library
               </span>
             </div>
           </SidebarHeader>
