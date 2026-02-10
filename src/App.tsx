@@ -1,36 +1,25 @@
-import * as React from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { AppShell } from "@/layouts/AppShell"
+import { HomePage } from "@/pages/HomePage"
 import { NeutralSpecimenDashboard } from "@/pages/neutral/NeutralSpecimenDashboard"
 import { ComponentExamplePage } from "@/pages/ComponentExamplePage"
 import { ExamplePage } from "@/pages/ExamplePage"
-
-/**
- * Simple routing using React state
- * Routes are defined here and passed to AppShell for navigation
- */
-type Route = "dashboard" | "component-examples" | "examples"
+import { PatternDetailPage } from "@/pages/PatternDetailPage"
+import { DesignDecisionPage } from "@/pages/DesignDecisionPage"
 
 export function App() {
-  const [currentRoute, setCurrentRoute] = React.useState<Route>("dashboard")
-
-  // Render the current page based on route
-  const renderPage = () => {
-    switch (currentRoute) {
-      case "dashboard":
-        return <NeutralSpecimenDashboard />
-      case "component-examples":
-        return <ComponentExamplePage />
-      case "examples":
-        return <ExamplePage />
-      default:
-        return <NeutralSpecimenDashboard />
-    }
-  }
-
   return (
-    <AppShell currentRoute={currentRoute} onNavigate={setCurrentRoute}>
-      {renderPage()}
-    </AppShell>
+    <Routes>
+      <Route element={<AppShell />}>
+        <Route index element={<HomePage />} />
+        <Route path="patterns/:slug" element={<PatternDetailPage />} />
+        <Route path="docs/:slug" element={<DesignDecisionPage />} />
+        <Route path="layouts/dashboard" element={<NeutralSpecimenDashboard />} />
+        <Route path="layouts/components" element={<ComponentExamplePage />} />
+        <Route path="layouts/examples" element={<ExamplePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   )
 }
 

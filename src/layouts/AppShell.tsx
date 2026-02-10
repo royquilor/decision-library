@@ -1,4 +1,4 @@
-import * as React from "react"
+import { Outlet, Link, useLocation } from "react-router-dom"
 import {
   Sidebar,
   SidebarContent,
@@ -16,82 +16,82 @@ import {
 } from "@/components/ui/sidebar"
 import { SiteHeader } from "@/components/SiteHeader"
 
-/**
- * AppShell - Option A: Sidebar + sticky site header
- *
- * Layout:
- * - Sticky site header (full width, top) with team + project switchers
- * - Row: Sidebar (left) + Main content (SidebarInset)
- *
- * Uses shadcn sidebar for: collapsible sidebar, mobile drawer, Cmd/Ctrl+B.
- */
-type Route = "dashboard" | "component-examples" | "examples"
+const NAV_GROUPS = [
+  {
+    label: "Overview",
+    items: [{ label: "Home", path: "/" }],
+  },
+  {
+    label: "Components",
+    items: [{ label: "Breadcrumbs", path: "/patterns/breadcrumbs" }],
+  },
+  {
+    label: "Layouts",
+    items: [
+      { label: "Dashboard", path: "/layouts/dashboard" },
+      { label: "Component Examples", path: "/layouts/components" },
+      { label: "Examples", path: "/layouts/examples" },
+    ],
+  },
+  {
+    label: "Design Decisions",
+    items: [
+      { label: "Spacing", path: "/docs/spacing" },
+      { label: "Text", path: "/docs/text" },
+      { label: "Design Rules", path: "/docs/design-rules" },
+      { label: "Neutral UI Specimens", path: "/docs/neutral-ui-specimens" },
+      { label: "AI Workflow", path: "/docs/ai-workflow" },
+      { label: "Human Workflow", path: "/docs/human-workflow" },
+    ],
+  },
+]
 
-interface AppShellProps {
-  children: React.ReactNode
-  currentRoute: Route
-  onNavigate: (route: Route) => void
-}
+export function AppShell() {
+  const { pathname } = useLocation()
 
-export function AppShell({ children, currentRoute, onNavigate }: AppShellProps) {
   return (
     <SidebarProvider className="flex flex-col min-h-svh w-full">
-      {/* Sticky site header: trigger, logo, team switcher, project switcher */}
       <SiteHeader />
 
-      {/* Sidebar + main content row */}
       <div className="flex flex-1 min-w-0">
         <Sidebar>
           <SidebarHeader>
             <div className="flex h-16 items-center px-2">
               <span className="text-base font-medium text-sidebar-foreground">
-                Design Decisions
+                R&D Pattern Lab
               </span>
             </div>
           </SidebarHeader>
 
           <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      isActive={currentRoute === "dashboard"}
-                      onClick={() => onNavigate("dashboard")}
-                    >
-                      Dashboard
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      isActive={currentRoute === "component-examples"}
-                      onClick={() => onNavigate("component-examples")}
-                    >
-                      Component Examples
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      isActive={currentRoute === "examples"}
-                      onClick={() => onNavigate("examples")}
-                    >
-                      Examples
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
+            {NAV_GROUPS.map((group) => (
+              <SidebarGroup key={group.label}>
+                <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {group.items.map((item) => (
+                      <SidebarMenuItem key={item.path}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={pathname === item.path}
+                        >
+                          <Link to={item.path}>{item.label}</Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            ))}
           </SidebarContent>
 
           <SidebarFooter />
           <SidebarRail />
         </Sidebar>
 
-        {/* Main content - scrollable */}
         <SidebarInset>
           <main className="flex-1 overflow-y-auto">
-            {children}
+            <Outlet />
           </main>
         </SidebarInset>
       </div>

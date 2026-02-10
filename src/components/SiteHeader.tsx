@@ -22,7 +22,10 @@ import {
   LayoutGridIcon,
   PlusIcon,
   FolderKanbanIcon,
+  MoonIcon,
+  SunIcon,
 } from "lucide-react"
+import { useTheme } from "@/hooks/use-theme"
 
 /** Mock teams: id, label, icon for list (default: Acme Inc) */
 const MOCK_TEAMS = [
@@ -56,6 +59,7 @@ interface SiteHeaderProps {
 export function SiteHeader({ className, children }: SiteHeaderProps) {
   const [team, setTeam] = React.useState<string>(MOCK_TEAMS[0].id)
   const [project, setProject] = React.useState<string>(MOCK_PROJECTS[0].id)
+  const { theme, toggleTheme } = useTheme()
 
   const currentTeam = MOCK_TEAMS.find((t) => t.id === team) ?? MOCK_TEAMS[0]
   const currentProject =
@@ -157,6 +161,16 @@ export function SiteHeader({ className, children }: SiteHeaderProps) {
           </DropdownMenu>
         </div>
       )}
+      <div className="ml-auto flex items-center">
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? <SunIcon className="size-4" /> : <MoonIcon className="size-4" />}
+        </Button>
+      </div>
     </header>
   )
 }
