@@ -11,6 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { ChevronRight } from "lucide-react"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -69,66 +75,75 @@ export function PatternDetailPage() {
               code={variant.sourceCode}
             />
 
-            {/* Audit trail */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Audit Trail</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm font-medium">Rationale</span>
-                  <p className="text-sm text-muted-foreground">
-                    {variant.metadata.rationale}
-                  </p>
-                </div>
+            {/* Audit trail — collapsed by default (progressive disclosure) */}
+            <Collapsible defaultOpen={false}>
+              <Card>
+                <CollapsibleTrigger asChild>
+                  <CardHeader className="cursor-pointer select-none">
+                    <div className="flex items-center justify-between">
+                      <CardTitle>Audit Trail</CardTitle>
+                      <ChevronRight className="size-4 text-muted-foreground transition-transform duration-200 [[data-state=open]_&]:rotate-90" />
+                    </div>
+                  </CardHeader>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <CardContent className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-sm font-medium">Rationale</span>
+                      <p className="text-sm text-muted-foreground">
+                        {variant.metadata.rationale}
+                      </p>
+                    </div>
 
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm font-medium">Trade-offs</span>
-                  <ul className="list-disc pl-4 text-sm text-muted-foreground">
-                    {variant.metadata.tradeOffs.map((t, i) => (
-                      <li key={i}>{t}</li>
-                    ))}
-                  </ul>
-                </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-sm font-medium">Trade-offs</span>
+                      <ul className="list-disc pl-4 text-sm text-muted-foreground">
+                        {variant.metadata.tradeOffs.map((t, i) => (
+                          <li key={i}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
 
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm font-medium">
-                    Design Decisions Followed
-                  </span>
-                  <ul className="list-disc pl-4 text-sm text-muted-foreground">
-                    {variant.metadata.designDecisionsFollowed.map((d, i) => (
-                      <li key={i}>{d}</li>
-                    ))}
-                  </ul>
-                </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-sm font-medium">
+                        Design Decisions Followed
+                      </span>
+                      <ul className="list-disc pl-4 text-sm text-muted-foreground">
+                        {variant.metadata.designDecisionsFollowed.map((d, i) => (
+                          <li key={i}>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
 
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm font-medium">
-                    Components Reused
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {variant.metadata.componentsReused.map((c) => (
-                      <Badge key={c} variant="secondary">
-                        {c}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-sm font-medium">
+                        Components Reused
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {variant.metadata.componentsReused.map((c) => (
+                          <Badge key={c} variant="secondary">
+                            {c}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
 
-                {variant.metadata.flaggedViolations.length > 0 && (
-                  <div className="flex flex-col gap-1">
-                    <span className="text-sm font-medium text-destructive">
-                      Flagged Violations
-                    </span>
-                    <ul className="list-disc pl-4 text-sm text-destructive">
-                      {variant.metadata.flaggedViolations.map((v, i) => (
-                        <li key={i}>{v}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                    {variant.metadata.flaggedViolations.length > 0 && (
+                      <div className="flex flex-col gap-1">
+                        <span className="text-sm font-medium text-destructive">
+                          Flagged Violations
+                        </span>
+                        <ul className="list-disc pl-4 text-sm text-destructive">
+                          {variant.metadata.flaggedViolations.map((v, i) => (
+                            <li key={i}>{v}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </CardContent>
+                </CollapsibleContent>
+              </Card>
+            </Collapsible>
           </section>
         ))}
 
