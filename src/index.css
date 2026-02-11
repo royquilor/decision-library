@@ -233,3 +233,144 @@
 .markdown-prose a:hover {
   opacity: 0.8;
 }
+
+/* ============================================
+   Preview code block — light/dark variants
+   (Code tab in PreviewCodePanel, shadcn-like)
+   ============================================ */
+
+/* Light mode code block */
+.preview-code-block pre,
+.preview-code-block pre code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+}
+
+.preview-code-block pre {
+  background: var(--code-block-bg);
+  color: var(--code-block-fg);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.preview-code-block pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Token colors — light mode (default) */
+:root {
+  --code-block-bg: #fafafa;
+  --code-block-fg: #18181b;
+  --code-block-comment: #71717a;
+  --code-block-punctuation: #52525b;
+  --code-block-tag: #18181b;
+  --code-block-attr-name: #2563eb;
+  --code-block-keyword: #c026d3;
+  --code-block-string: #15803d;
+  --code-block-function: #9333ea;
+  --code-block-number: #b45309;
+  --code-block-operator: #b45309;
+  --code-block-property: #b45309;
+  --code-block-selector: #15803d;
+}
+
+/* Token colors — dark mode */
+.dark .preview-code-block {
+  --code-block-bg: #1a1a1a;
+  --code-block-fg: #e4e4e7;
+  --code-block-comment: #71717a;
+  --code-block-punctuation: #a1a1aa;
+  --code-block-tag: #e4e4e7;
+  --code-block-attr-name: #93c5fd;
+  --code-block-keyword: #d8b4fe;
+  --code-block-string: #86efac;
+  --code-block-function: #c4b5fd;
+  --code-block-number: #fdba74;
+  --code-block-operator: #67e8f9;
+  --code-block-property: #fcd34d;
+  --code-block-selector: #86efac;
+}
+
+.preview-code-block .token.comment,
+.preview-code-block .token.block-comment,
+.preview-code-block .token.prolog,
+.preview-code-block .token.doctype,
+.preview-code-block .token.cdata {
+  color: var(--code-block-comment);
+}
+
+.preview-code-block .token.punctuation {
+  color: var(--code-block-punctuation);
+}
+
+.preview-code-block .token.tag,
+.preview-code-block .token.attr-name,
+.preview-code-block .token.namespace,
+.preview-code-block .token.deleted {
+  color: var(--code-block-tag);
+}
+
+.preview-code-block .token.attr-name {
+  color: var(--code-block-attr-name);
+}
+
+.preview-code-block .token.function-name {
+  color: var(--code-block-function);
+}
+
+.preview-code-block .token.boolean,
+.preview-code-block .token.number,
+.preview-code-block .token.function {
+  color: var(--code-block-number);
+}
+
+.preview-code-block .token.property,
+.preview-code-block .token.class-name,
+.preview-code-block .token.constant,
+.preview-code-block .token.symbol {
+  color: var(--code-block-property);
+}
+
+.preview-code-block .token.selector,
+.preview-code-block .token.important,
+.preview-code-block .token.atrule,
+.preview-code-block .token.keyword,
+.preview-code-block .token.builtin {
+  color: var(--code-block-keyword);
+}
+
+.preview-code-block .token.string,
+.preview-code-block .token.char,
+.preview-code-block .token.attr-value,
+.preview-code-block .token.regex,
+.preview-code-block .token.variable {
+  color: var(--code-block-string);
+}
+
+.preview-code-block .token.operator,
+.preview-code-block .token.entity,
+.preview-code-block .token.url {
+  color: var(--code-block-operator);
+}
+
+.preview-code-block .token.important,
+.preview-code-block .token.bold {
+  font-weight: bold;
+}
+
+.preview-code-block .token.italic {
+  font-style: italic;
+}
+
+.preview-code-block .token.entity {
+  cursor: help;
+}

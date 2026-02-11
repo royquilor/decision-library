@@ -3,7 +3,7 @@ import Prism from "prismjs"
 import "prismjs/components/prism-typescript"
 import "prismjs/components/prism-jsx"
 import "prismjs/components/prism-tsx"
-import "prismjs/themes/prism-tomorrow.css"
+// Theme is applied via .preview-code-block in index.css (light/dark variants)
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { CheckIcon, CopyIcon } from "lucide-react"
@@ -44,11 +44,11 @@ export function PreviewCodePanel({
         </div>
       </TabsContent>
       <TabsContent value="code">
-        <div className="relative rounded-lg border border-border overflow-hidden">
+        <div className="relative rounded-lg border border-border overflow-hidden preview-code-block">
           <Button
             variant="ghost"
             size="icon-sm"
-            className="absolute right-2 top-2 z-10 text-[#999] hover:text-[#ccc]"
+            className="absolute right-2 top-2 z-10 text-muted-foreground hover:text-foreground"
             onClick={handleCopy}
             aria-label="Copy code"
           >
@@ -58,8 +58,8 @@ export function PreviewCodePanel({
               <CopyIcon className="size-4" />
             )}
           </Button>
-          <pre className="overflow-x-auto p-4 text-sm !m-0 !bg-[#2d2d2d] !text-[#ccc]">
-            <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+          <pre className="overflow-x-auto p-4 text-sm m-0! language-tsx">
+            <code className="language-tsx" dangerouslySetInnerHTML={{ __html: highlightedCode }} />
           </pre>
         </div>
       </TabsContent>
