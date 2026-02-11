@@ -140,15 +140,47 @@ This specimen is intentionally simple and reused as a reference.
 ## Component Creation Rules
 
 Before creating a new component:
-1. Does an existing component already support this use case?
-2. Can it be extended without breaking its intent?
-3. Is the difference semantic or purely visual?
+1. Does an existing component already exist in `src/components/ui/`?
+2. If not, does shadcn/ui offer this component? (Check https://ui.shadcn.com/llms.txt)
+3. If shadcn/ui has it, install it via `npx shadcn@latest add <name>` before building custom.
+4. Can an existing component be extended without breaking its intent?
+5. Is the difference semantic or purely visual?
 
 New components should only be created when:
 - The use case is fundamentally different
+- No shadcn/ui component covers the need
 - Reuse would cause confusion or misuse
 
 Component decisions should be documented briefly when unclear.
+
+### Component Sourcing Priority
+
+When a UI component is needed, follow this order:
+
+1. **Reuse** — Check `src/components/ui/` for an existing installed component
+2. **Install from shadcn/ui** — If not installed but available in shadcn/ui, install it
+3. **Extend** — If a close match exists, extend it with variants
+4. **Create custom** — Only as a last resort, and document the reason
+
+#### Currently Installed (shadcn/ui)
+
+alert-dialog, badge, breadcrumb, button, card, combobox, dropdown-menu, field, input-group, input, label, select, separator, sheet, sidebar, skeleton, tabs, textarea, tooltip
+
+#### Available from shadcn/ui (not yet installed)
+
+**Forms & Input:** checkbox, radio-group, switch, slider, input-otp, calendar, date-picker, form
+
+**Layout & Navigation:** accordion, navigation-menu, scroll-area, resizable, pagination
+
+**Overlays & Dialogs:** dialog, drawer, popover, hover-card, context-menu, menubar, command
+
+**Feedback & Status:** alert, toast, progress, spinner, empty
+
+**Display & Media:** avatar, table, data-table, chart, carousel, aspect-ratio, typography, toggle, toggle-group, collapsible, kbd
+
+To install any of these: `npx shadcn@latest add <component-name>`
+
+Reference: https://ui.shadcn.com/llms.txt
 
 ---
 
