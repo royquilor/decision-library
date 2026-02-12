@@ -23,7 +23,10 @@ const NAV_GROUPS = [
   },
   {
     label: "Components",
-    items: [{ label: "Breadcrumbs", path: "/patterns/breadcrumbs" }],
+    items: [
+      { label: "Breadcrumbs", path: "/patterns/breadcrumbs" },
+      { label: "Collapsible", path: "/patterns/collapsible" },
+    ],
   },
   {
     label: "Layouts",

@@ -12,6 +12,11 @@ const PATTERN_LINKS = [
     title: "Breadcrumbs",
     description: "Navigation breadcrumb variants with audit trail metadata.",
   },
+  {
+    to: "/patterns/collapsible",
+    title: "Collapsible",
+    description: "Expandable panels for progressive disclosure of content.",
+  },
 ]
 
 const DOC_LINKS = [
