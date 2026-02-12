@@ -10,21 +10,17 @@ This is a **Decision Library** — a React app for documenting and previewing de
 
 **Before creating any new UI component, follow this order:**
 
-1. **Check existing** — Look in `src/components/ui/` for an already installed component
-2. **Check shadcn/ui** — Fetch https://ui.shadcn.com/llms.txt to see if the component exists in the shadcn/ui library
+1. **Search the codebase** — Search for existing components (look for `components/`, `ui/`, `shared/`, or equivalent directories relative to the project root)
+2. **Check shadcn/ui** — If `components.json` exists (confirming shadcn/ui is configured), fetch https://ui.shadcn.com/llms.txt to see if the component is available
 3. **Propose installation** — If available in shadcn/ui but not installed, propose installing it with `npx shadcn@latest add <name>` before writing any custom code
 4. **Extend** — If a close match exists, extend it with variants rather than creating a new component
-5. **Create custom** — Only as a last resort, and document the reason in `docs/`
+5. **Create custom** — Only as a last resort, and document the reason
 
-### Currently Installed shadcn/ui Components
+### How to discover existing components
 
-alert-dialog, badge, breadcrumb, button, card, combobox, dropdown-menu, field, input-group, input, label, select, separator, sheet, sidebar, skeleton, tabs, textarea, tooltip
-
-### Install Command
-
-```bash
-npx shadcn@latest add <component-name>
-```
+- Look for `components.json` to confirm shadcn/ui is configured and find the UI component path
+- Search for directories named `components`, `ui`, `shared`, or `common`
+- Check `package.json` for component libraries already installed (e.g. `radix-ui`, `@headlessui`, `@base-ui`)
 
 ## Key Paths
 
