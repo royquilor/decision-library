@@ -74,8 +74,7 @@ src/
 │   ├── breadcrumbs/                 # Variant files (variant-a.tsx, etc.)
 │   └── collapsible/                 # Variant files
 ├── docs/
-│   ├── registry.ts                  # Doc definitions + markdown loading
-│   └── *.md                         # Design decision markdown files
+│   └── registry.ts                  # Doc definitions + markdown loading (reads from docs/)
 ├── hooks/
 │   ├── use-theme.ts                 # Dark mode hook
 │   └── use-mobile.ts               # Mobile breakpoint detection
@@ -108,7 +107,7 @@ When prompting AI to generate variants, provide:
 
 ## Design Decision Docs
 
-These files live in `src/docs/` and are rendered in-app:
+These files live in `docs/` and are rendered in-app:
 
 | File | What It Defines |
 |---|---|

@@ -21,8 +21,8 @@ export const docs: DocDefinition[] = [
   },
 ]
 
-// Load all markdown files at build time
-const markdownFiles = import.meta.glob<string>("./*.md", {
+// Load all markdown files from docs/ at build time
+const markdownFiles = import.meta.glob<string>("../../docs/*.md", {
   query: "?raw",
   import: "default",
   eager: true,
@@ -33,7 +33,7 @@ export function getDocBySlug(
 ): { meta: DocDefinition; content: string } | undefined {
   const meta = docs.find((d) => d.slug === slug)
   if (!meta) return undefined
-  const content = markdownFiles[`./${meta.filename}`]
+  const content = markdownFiles[`../../docs/${meta.filename}`]
   if (!content) return undefined
   return { meta, content }
 }
