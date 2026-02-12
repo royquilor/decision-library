@@ -29,6 +29,8 @@ export interface PatternDefinition {
   description: string
   category: "components" | "layouts" | "patterns"
   variants: PatternVariant[]
+  /** Shell layout for in-context preview. "header" (default) or "content". */
+  inContextLayout?: "header" | "content"
 }
 
 // Load source code at build time
@@ -155,6 +157,7 @@ export const patterns: PatternDefinition[] = [
     description:
       "Expandable and collapsible panels for progressive disclosure of content.",
     category: "components",
+    inContextLayout: "content",
     variants: [
       {
         id: "variant-a",

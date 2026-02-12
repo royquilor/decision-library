@@ -2,6 +2,9 @@ import * as React from "react"
 
 interface SimplifiedAppShellProps {
   children: React.ReactNode
+  /** "header" = children in header area with cards below (default).
+   *  "content" = muted header above, children in content area, no cards. */
+  layout?: "header" | "content"
 }
 
 /**
@@ -11,7 +14,7 @@ interface SimplifiedAppShellProps {
  *
  * Does NOT use SidebarProvider — completely independent from the real shell.
  */
-export function SimplifiedAppShell({ children }: SimplifiedAppShellProps) {
+export function SimplifiedAppShell({ children, layout = "header" }: SimplifiedAppShellProps) {
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-lg border border-border bg-background h-[480px]">
       {/* Simplified topbar */}
@@ -43,23 +46,40 @@ export function SimplifiedAppShell({ children }: SimplifiedAppShellProps) {
 
         {/* Main content area */}
         <div className="flex flex-1 flex-col overflow-hidden">
-          {/* Header area — variant renders here */}
-          <div className="flex flex-col gap-4 border-b border-border px-6 py-6">
-            {children}
-            {/* Muted page title placeholder */}
-            <div className="h-5 w-40 rounded bg-muted" />
-            <div className="h-3 w-64 rounded bg-muted/50" />
-          </div>
+          {layout === "header" ? (
+            <>
+              {/* Header area — variant renders here */}
+              <div className="flex flex-col gap-4 border-b border-border px-6 py-6">
+                {children}
+                {/* Muted page title placeholder */}
+                <div className="h-5 w-40 rounded bg-muted" />
+                <div className="h-3 w-64 rounded bg-muted/50" />
+              </div>
 
-          {/* Muted content placeholders */}
-          <div className="flex flex-col gap-4 p-6">
-            <div className="h-4 w-24 rounded bg-muted" />
-            <div className="grid grid-cols-3 gap-4">
-              <div className="h-24 rounded-lg bg-muted/20 border border-border" />
-              <div className="h-24 rounded-lg bg-muted/20 border border-border" />
-              <div className="h-24 rounded-lg bg-muted/20 border border-border" />
-            </div>
-          </div>
+              {/* Muted content placeholders */}
+              <div className="flex flex-col gap-4 p-6">
+                <div className="h-4 w-24 rounded bg-muted" />
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="h-24 rounded-lg bg-muted/20 border border-border" />
+                  <div className="h-24 rounded-lg bg-muted/20 border border-border" />
+                  <div className="h-24 rounded-lg bg-muted/20 border border-border" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Muted page header */}
+              <div className="flex flex-col gap-2 px-6 pt-6">
+                <div className="h-5 w-40 rounded bg-muted" />
+                <div className="h-3 w-64 rounded bg-muted/50" />
+              </div>
+
+              {/* Content area — variant renders here */}
+              <div className="flex-1 overflow-y-auto px-6 py-4">
+                {children}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

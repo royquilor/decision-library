@@ -173,7 +173,7 @@ export function PatternDetailPage() {
           {selectedVariant && (
             <PreviewCodePanel
               preview={
-                <SimplifiedAppShell>
+                <SimplifiedAppShell layout={pattern.inContextLayout ?? "header"}>
                   <selectedVariant.component />
                 </SimplifiedAppShell>
               }
