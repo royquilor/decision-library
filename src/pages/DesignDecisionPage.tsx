@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
-import { getDocBySlug } from "@/docs/registry"
+import { getDocBySlug } from "@/lib/docs-registry"
 
 export function DesignDecisionPage() {
   const { slug } = useParams<{ slug: string }>()
