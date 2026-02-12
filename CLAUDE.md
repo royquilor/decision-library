@@ -33,11 +33,16 @@ This is a **Decision Library** — a React app for documenting and previewing de
 
 ## Design Rules
 
-- Follow rules in `docs/design-decisions-design-rules.md`
+**When creating or modifying UI components, read these files first:**
+- `docs/design-rules.md` — component sourcing, creation rules, and guiding principles
+- `src/docs/text.md` — text hierarchy, roles, and usage rules
+- `src/docs/spacing.md` — spacing rules, purpose-based values, and relationships
+
+Key principles (details in the files above):
 - Reuse over creation — do not invent new components or spacing patterns
 - Spacing is defined by purpose, not arbitrary values
 - Text styles are chosen by semantic role, not aesthetics
-- Document any exceptions or new component decisions
+- Document any exceptions or new component decisions in `decision-log/`
 
 ## Code Conventions
 
